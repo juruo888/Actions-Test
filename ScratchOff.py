@@ -38,22 +38,10 @@ def noPicturesError():
     printLog("ERROR","Cannot read pictures file data.")
     if IsZh_Hans:
         if win32api.MessageBox(0,"无法读取图片数据。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。","错误",win32con.MB_ICONWARNING | win32con.MB_YESNO)==6:
-            subprocess.run("start website/issues.url > temp.txt 2> temp2.txt",shell=True)
-            file=open("temp2.txt","r")
-            if file.read()!="":
-                printLog("ERROR","Cannot found the issues page in website folder.")
-            file.close()
-            subprocess.run("del temp.txt",shell=True)
-            subprocess.run("del temp2.txt",shell=True)
+            subprocess.run("start website/issues.url",shell=True)
     else:
         if win32api.MessageBox(0,"Cannot read pictures file data.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.","Error",win32con.MB_ICONWARNING | win32con.MB_YESNO)==6:
-            subprocess.run("start website/issues.url > temp.txt 2> temp2.txt",shell=True)
-            file=open("temp2.txt","r")
-            if file.read()!="":
-                printLog("ERROR","Cannot found the issues page in website folder.")
-            file.close()
-            subprocess.run("del temp.txt",shell=True)
-            subprocess.run("del temp2.txt",shell=True)
+            subprocess.run("start website/issues.url",shell=True)
     quit(2)
 
 # No icon error
@@ -62,22 +50,10 @@ def noIconError():
     printLog("ERROR","Cannot read icon.")
     if IsZh_Hans:
         if win32api.MessageBox(0,"无法读取图标。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。","错误",win32con.MB_ICONWARNING | win32con.MB_YESNO)==6:
-            subprocess.run("start website/issues.url > temp.txt 2> temp2.txt",shell=True)
-            file=open("temp2.txt","r")
-            if file.read()!="":
-                printLog("ERROR","Cannot found the issues page in website folder.")
-            file.close()
-            subprocess.run("del temp.txt",shell=True)
-            subprocess.run("del temp2.txt",shell=True)
+            subprocess.run("start website/issues.url",shell=True)
     else:
         if win32api.MessageBox(0,"Cannot read icon.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.","Error",win32con.MB_ICONWARNING | win32con.MB_YESNO)==6:
-            subprocess.run("start website/issues.url > temp.txt 2> temp2.txt",shell=True)
-            file=open("temp2.txt","r")
-            if file.read()!="":
-                printLog("ERROR","Cannot found the issues page in website folder.")
-            file.close()
-            subprocess.run("del temp.txt",shell=True)
-            subprocess.run("del temp2.txt",shell=True)
+            subprocess.run("start website/issues.url",shell=True)
     quit(2)
 
 # No font error
@@ -86,22 +62,10 @@ def noFontError():
     printLog("ERROR","Cannot read font data.")
     if IsZh_Hans:
         if win32api.MessageBox(0,"无法读取字体数据。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。","错误",win32con.MB_ICONWARNING | win32con.MB_YESNO)==6:
-            subprocess.run("start website/issues.url > temp.txt 2> temp2.txt",shell=True)
-            file=open("temp2.txt","r")
-            if file.read()!="":
-                printLog("ERROR","Cannot found the issues page in website folder.")
-            file.close()
-            subprocess.run("del temp.txt",shell=True)
-            subprocess.run("del temp2.txt",shell=True)
+            subprocess.run("start website/issues.url",shell=True)
     else:
         if win32api.MessageBox(0,"Cannot read font data.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.","Error",win32con.MB_ICONWARNING | win32con.MB_YESNO)==6:
-            subprocess.run("start website/issues.url > temp.txt 2> temp2.txt",shell=True)
-            file=open("temp2.txt","r")
-            if file.read()!="":
-                printLog("ERROR","Cannot found the issues page in website folder.")
-            file.close()
-            subprocess.run("del temp.txt",shell=True)
-            subprocess.run("del temp2.txt",shell=True)
+            subprocess.run("start website/issues.url",shell=True)
     quit(2)
 
 # Cannot write log error
@@ -109,14 +73,10 @@ def cannotWriteLogError():
     quit(1)
     if IsZh_Hans:
         if win32api.MessageBox(0,"无法写入日志。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。","错误",win32con.MB_ICONERROR | win32con.MB_YESNO)==6:
-            subprocess.run("start website/issues.url > temp.txt 2> temp2.txt",shell=True)
-            subprocess.run("del temp.txt",shell=True)
-            subprocess.run("del temp2.txt",shell=True)
+            subprocess.run("start website/issues.url",shell=True)
     else:
         if win32api.MessageBox(0,"Cannot write log file.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.","Error",win32con.MB_ICONERROR | win32con.MB_YESNO)==6:
-            subprocess.run("start website/issues.url > temp.txt 2> temp2.txt",shell=True)
-            subprocess.run("del temp.txt",shell=True)
-            subprocess.run("del temp2.txt",shell=True)
+            subprocess.run("start website/issues.url",shell=True)
     quit(3)
 
 # Resize
