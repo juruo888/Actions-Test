@@ -14,6 +14,8 @@ typenum=int(linecache.getline("ScratchOff.py",25)[8:])
 x=int(linecache.getline("ScratchOff.py",26)[2:])
 if int(typenum)<=6:
     DEBUG=True
+else:
+    DEBUG=False
 version=str(major)+"."+str(minor)+"."+str(releases)+"."+str(build)+"."+str(typenum)+"."+str(x)
 del major,minor,releases,build,typenum,x
 os.system("md python")
