@@ -4,12 +4,12 @@ LICENSE @ren-yc
 .github/ISSUE_TEMPLATE @juruo888
 .gitmsgrc.cjs @ren-yc
 website/ @juruo888
-CHANGLOG.md @juruo888
-README.md @juruo888 @ren-yc
-README.zh-Hans.md @juruo888 @ren-yc
+CHANGELOG.md @juruo888
+README.md @juruo888
+README.zh-Hans.md @juruo888
 SO.ico @juruo888
 SO.png @juruo888
-versionName.md @juruo888
+nersionNamingRules.md @juruo888
 ScratchOff.py @juruo888
 font.ttc @juruo888
 compile.py @juruo888

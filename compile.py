@@ -22,13 +22,13 @@ os.system("md python")
 os.system("\""+PATH[1]+"python\" -m venv python\\python64")
 os.system("python\\python64\\Scripts\\python -m pip install --upgrade pip")
 os.system("python\\python64\\Scripts\\pip install pywin32")
-os.system("python\\python64\\Scripts\\pip install pygame")
+os.system("python\\python64\\Scripts\\pip install pygame==1.9.6")
 os.system("python\\python64\\Scripts\\pip install pillow")
 os.system("python\\python64\\Scripts\\pip install pyinstaller")
 os.system("\""+PATH[3]+"python\" -m venv python\\python32")
 os.system("python\\python32\\Scripts\\python -m pip install --upgrade pip")
 os.system("python\\python32\\Scripts\\pip install pywin32")
-os.system("python\\python32\\Scripts\\pip install pygame")
+os.system("python\\python32\\Scripts\\pip install pygame==1.9.6")
 os.system("python\\python32\\Scripts\\pip install pillow")
 os.system("python\\python32\\Scripts\\pip install pyinstaller")
 if DEBUG:
@@ -45,7 +45,7 @@ if DEBUG:
     os.system("del ScratchOff.spec")
     with open("ScratchOff.py","r",encoding="utf-8") as file:
         text=file.readlines()
-    text[14]="DEBUG=True\n"
+    text[15]="DEBUG=True\n"
     with open("ScratchOff.py","w",encoding="utf-8") as file:
         for i in text:
             file.write(i)
@@ -61,7 +61,7 @@ if DEBUG:
     os.system("del ScratchOff.spec")
     with open("ScratchOff.py","r",encoding="utf-8") as file:
         text=file.readlines()
-    text[14]="DEBUG=False\n"
+    text[15]="DEBUG=False\n"
     with open("ScratchOff.py","w",encoding="utf-8") as file:
         for i in text:
             file.write(i)
@@ -84,5 +84,5 @@ os.system("xcopy website Releases\\ScratchOff_"+version+"\\website <temp.txt")
 os.system("xcopy pictures Releases\\ScratchOff_"+version+"\\pictures /E <temp.txt")
 os.system("del temp.txt")
 os.system("copy font.ttc Releases\\ScratchOff_"+version+"\\font.ttc")
-os.system("copy SO.png Releases\\ScratchOff_"+version+"\\SO.png")
+os.system("copy SO.ico Releases\\ScratchOff_"+version+"\\SO.ico")
 os.system("rd /s /q python")

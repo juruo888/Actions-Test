@@ -1,6 +1,7 @@
 # Import
-import os,sys,random,ctypes,win32api,win32con,time,subprocess,datetime
+import os,sys,random,ctypes,win32api,win32con,time,subprocess,datetime,tkinter,tkinter.messagebox
 from PIL import Image,UnidentifiedImageError
+from _tkinter import TclError
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"]="0"
 import pygame
 
@@ -13,24 +14,34 @@ GRAY=(192,192,192)
 sys_lang=hex(ctypes.windll.kernel32.GetSystemDefaultUILanguage())
 IsZh_Hans=(sys_lang=="0x804")
 DEBUG=False
-ONEIMAGE=False
 RESTART=True
-BOMBTIME="1145141919810"
+BOMBTIME="2022.7.7 12:00:00"
 
 # Version
 major=1
 minor=1
 releases=0
-build=8
-typenum=16
-x=0
+build=9
+typenum=1
+x=1
 
 # Language
-Lang_Title=""
 if IsZh_Hans:
-    Lang_Title="抽奖"
+    Lang_Title="刮刮乐"
+    Lang_Quit="退出"
+    Lang_About="关于"
+    Lang_About_Message="本程序受 MIT 许可证保护\nCopyright © 2022 Class Tools Develop Team. All rights reserved.\nGithub 存储库：https://github.com/class-tools/ScratchOff\n\n"
+    Lang_About_Insider="Class Tools 机密\n以任何方式进行未经授权的使用或披露可能会招致惩戒处分，最严重的处罚可要求承担可能的民事与刑事责任。\n\n仅用于测试。版本号："
+    Lang_About_Public="仅用于测试。版本号："
+    Lang_About_Releases="版本号："
 else:
     Lang_Title="Scratch Off"
+    Lang_Quit="Quit"
+    Lang_About="About"
+    Lang_About_Message="This program uses MIT License\nCopyright © 2022 Class Tools Develop Team. All rights reserved.\nGithub Repository: https://github.com/class-tools/ScratchOff\n\n"
+    Lang_About_Insider="Class Tools Confidential\nUnauthorized use or disclosure in any way may result in disciplinary action, and the most serious punishment may require possible civil and criminal liability.\n\nOnly for test. Version: "
+    Lang_About_Public="Only for test. Version: "
+    Lang_About_Releases="Version: "
 
 # No pictures error
 def noPicturesError():
@@ -42,7 +53,7 @@ def noPicturesError():
     else:
         if win32api.MessageBox(0,"Cannot read pictures file data.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.","Error",win32con.MB_ICONWARNING | win32con.MB_YESNO)==6:
             subprocess.run("start website/issues.url",shell=True)
-    quit(2)
+    quit(3)
 
 # No icon error
 def noIconError():
@@ -54,7 +65,7 @@ def noIconError():
     else:
         if win32api.MessageBox(0,"Cannot read icon.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.","Error",win32con.MB_ICONWARNING | win32con.MB_YESNO)==6:
             subprocess.run("start website/issues.url",shell=True)
-    quit(2)
+    quit(3)
 
 # No font error
 def noFontError():
@@ -66,7 +77,7 @@ def noFontError():
     else:
         if win32api.MessageBox(0,"Cannot read font data.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.","Error",win32con.MB_ICONWARNING | win32con.MB_YESNO)==6:
             subprocess.run("start website/issues.url",shell=True)
-    quit(2)
+    quit(3)
 
 # Cannot write log error
 def cannotWriteLogError():
@@ -77,7 +88,7 @@ def cannotWriteLogError():
     else:
         if win32api.MessageBox(0,"Cannot write log file.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.","Error",win32con.MB_ICONERROR | win32con.MB_YESNO)==6:
             subprocess.run("start website/issues.url",shell=True)
-    quit(3)
+    quit(4)
 
 # Resize
 def resize(size):
@@ -91,6 +102,7 @@ def resize(size):
             size=(size[0]*0.5,size[1]*0.5)
         else:
             break
+    size=(int(size[0]),int(size[1]))
     return size
 
 # Random
@@ -100,6 +112,8 @@ def readImageRandomly():
     filenames=[f for f in filenames if f.split(".")[-1] in SUPPORTEXTS]
     if len(filenames)==1:
         ONEIMAGE=True
+    else:
+        ONEIMAGE=False
     imgpath=os.path.join(IMAGEDIR,random.choice(filenames))
     img=Image.open(imgpath)
     SCREENSIZE=img.size
@@ -137,7 +151,6 @@ def getTime(log):
 def watermark():
     font20=pygame.font.Font("font.ttc",20)
     font15=pygame.font.Font("font.ttc",15)
-    font10=pygame.font.Font("font.ttc",10)
     if typenum<=4:
         text1=font20.render("Class Tools 机密",True,(0,0,0))
         text2=font15.render("以任何方式进行未经授权的使用或披露",True,(0,0,0))
@@ -152,32 +165,54 @@ def watermark():
     elif typenum<=8:
         text=font15.render("仅用于测试。版本号："+str(major)+"."+str(minor)+"."+str(releases)+"."+str(build)+"."+str(typenum)+"."+str(x),True,(0,0,0))
         screen.blit(text,(0,0))
+# About in menu bar
+def Menu_About():
+    if typenum<=4:
+        tkinter.messagebox.showinfo(title=Lang_About,message=Lang_About_Message+Lang_About_Insider+str(major)+"."+str(minor)+"."+str(releases)+"."+str(build)+"."+str(typenum)+"."+str(x))
+    elif typenum<=8:
+        tkinter.messagebox.showinfo(title=Lang_About,message=Lang_About_Message+Lang_About_Public+str(major)+"."+str(minor)+"."+str(releases)+"."+str(build)+"."+str(typenum)+"."+str(x))
     else:
-        text=font10.render("版本号："+str(major)+"."+str(minor)+"."+str(releases)+"."+str(build)+"."+str(typenum)+"."+str(x),True,(0,0,0))
-        screen.blit(text,(0,0))
+        tkinter.messagebox.showinfo(title=Lang_About,message=Lang_About_Message+Lang_About_Releases+str(major)+"."+str(minor)+"."+str(releases)+"."+str(build)+"."+str(typenum)+"."+str(x))
+
+# Quit in menu bar
+def Menu_Quit():
+    quit(2)
 
 # Init
 def init():
-    global screen
+    global screen,root
+    root=tkinter.Tk()
+    root.title(Lang_Title)
+    root.geometry(str(SCREENSIZE[0])+"x"+str(SCREENSIZE[1])+"+"+str(int(root.winfo_screenwidth()/2-SCREENSIZE[0]/2))+"+"+str(int(root.winfo_screenheight()/2-SCREENSIZE[1]/2)))
+    root.resizable(width=False,height=False)
+    try:
+        root.iconbitmap("SO.ico")
+    except TclError:
+        noIconError()
+    embed=tkinter.Frame(root,width=SCREENSIZE[0],height=SCREENSIZE[1])
+    embed.grid(columnspan=(600),rowspan =500)
+    embed.pack(side=tkinter.LEFT)
+    menubar=tkinter.Menu(root)
+    root["menu"]=menubar
+    menubar.add_command(label=Lang_About,command=Menu_About)
+    menubar.add_command(label=Lang_Quit,command=Menu_Quit)
+    os.environ["SDL_WINDOWID"]=str(embed.winfo_id())
+    os.environ["SDL_VIDEODRIVER"]="windib"
     pygame.init()
     pygame.mixer.init()
     pygame.mouse.set_cursor(*pygame.cursors.diamond)
     screen=pygame.display.set_mode(SCREENSIZE)
-    pygame.display.set_caption(Lang_Title)
-    try:
-        icon=pygame.image.load("SO.png")
-        pygame.display.set_icon(icon)
-    except FileNotFoundError:
-        noIconError()
 
 # Quit
 def quit(quittype):
     if quittype==1:
         pygame.quit()
     elif quittype==2:
+        root.destroy()
+    elif quittype==3:
         printLog("INFO","Exiting ScratchOff.")
         sys.exit(0)
-    elif quittype==3:
+    elif quittype==4:
         sys.exit(0)
 
 # Create log
@@ -198,17 +233,17 @@ if typenum<=12:
         bomb=datetime.datetime.strptime(BOMBTIME,"%Y.%m.%d %H:%M:%S")
         if now>bomb:
             printLog("INFO","You use the program after the timeless.")
-            quit(2)
+            quit(3)
 
 # Warn
 if typenum<=4:
     if win32api.MessageBox(0,"此版本为内部版本，版本号："+str(major)+"."+str(minor)+"."+str(releases)+"."+str(build)+"."+str(typenum)+"."+str(x)+"。\n以任何方式进行未经授权的使用或披露可能会招致惩戒处分，最严重的处罚可要求承担可能的民事与刑事责任。\n若以认真阅读这段文字，请点击否确认。","警告",win32con.MB_ICONWARNING | win32con.MB_YESNO)==6:
         printLog("INFO","You click yes.")
-        quit(2)
+        quit(3)
 elif typenum<=8:
     if win32api.MessageBox(0,"此版本为测试版本，仅用于测试，版本号："+str(major)+"."+str(minor)+"."+str(releases)+"."+str(build)+"."+str(typenum)+"."+str(x)+"。\n若以认真阅读这段文字，请点击否确认。","警告",win32con.MB_ICONWARNING | win32con.MB_YESNO)==6:
         printLog("INFO","You click yes.")
-        quit(2)
+        quit(3)
 
 
 # Read image
@@ -227,6 +262,7 @@ printLog("INFO","Use image "+image[1]+", image size: "+str(image[2]))
 printLog("INFO","Set screen size to "+str(SCREENSIZE))
 
 # Init
+
 init()
 surface=pygame.Surface(SCREENSIZE).convert_alpha()
 surface.fill(GRAY)
@@ -236,7 +272,7 @@ while True:
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
             quit(1)
-            quit(2)
+            quit(3)
     mouse_event_flags=pygame.mouse.get_pressed()
     if mouse_event_flags[0]:
         RESTART=False
@@ -263,6 +299,7 @@ while True:
             printLog("INFO","Use image "+image[1]+", image size: "+str(image[2]))
             printLog("INFO","Set screen size to "+str(SCREENSIZE))
             quit(1)
+            quit(2)
             init()
             surface=pygame.Surface(SCREENSIZE).convert_alpha()
             surface.fill(GRAY)
@@ -274,3 +311,8 @@ while True:
     except:
         noFontError()
     pygame.display.update()
+    try:
+        root.update()
+    except TclError:
+        quit(1)
+        quit(3)
