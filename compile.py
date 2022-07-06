@@ -6,6 +6,7 @@
 # 另外提醒，PATH 末尾需要有反斜杠！！！
 import os,linecache
 PATH=os.environ.get("PATH").split(";")
+print(PATH)
 major=int(linecache.getline("ScratchOff.py",21)[6:])
 minor=int(linecache.getline("ScratchOff.py",22)[6:])
 releases=int(linecache.getline("ScratchOff.py",23)[9:])
