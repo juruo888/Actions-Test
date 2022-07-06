@@ -27,6 +27,5 @@ jobs:
           git clone https://github.com/juruo888/Actions-Test.git
       - name: Compile
         run: |
-          python --version
           cd Actions-Test
           python compile.py

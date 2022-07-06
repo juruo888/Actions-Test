@@ -4,9 +4,8 @@
 # 3. Python 32 位 Scripts 目录
 # 4. Python 32 位根目录
 # 另外提醒，PATH 末尾需要有反斜杠！！！
-import os,linecache
+import os,sys,linecache
 PATH=os.environ.get("PATH").split(";")
-print(PATH)
 major=int(linecache.getline("ScratchOff.py",21)[6:])
 minor=int(linecache.getline("ScratchOff.py",22)[6:])
 releases=int(linecache.getline("ScratchOff.py",23)[9:])
@@ -18,15 +17,31 @@ if int(typenum)<=6:
 else:
     DEBUG=False
 version=str(major)+"."+str(minor)+"."+str(releases)+"."+str(build)+"."+str(typenum)+"."+str(x)
-del major,minor,releases,build,typenum,x
+python64=""
+python32=""
+for i in PATH:
+    try:
+        if "python.exe" in os.listdir(i):
+            if ("32" in i) or ("x86" in i):
+                python32=i
+            else:
+                python64=i
+    except FileNotFoundError as e:
+        print("[WARN] Your PATH have a not found path, \""+str(e).split("'")[1]+"\".")
+if python32=="":
+    print("[ERROR] Python x86 not found. Please install Python x86 or remame folder name with 32/x86!")
+    sys.exit(1)
+if python64=="":
+    print("[ERROR] Python x64 not found. Please install Python x64!")
+    sys.exit(1)
 os.system("md python")
-os.system("\""+PATH[1]+"python\" -m venv python\\python64")
+os.system("\""+PATH[1]+"\\python\" -m venv python\\python64")
 os.system("python\\python64\\Scripts\\python -m pip install --upgrade pip")
 os.system("python\\python64\\Scripts\\pip install pywin32")
 os.system("python\\python64\\Scripts\\pip install pygame==1.9.6")
 os.system("python\\python64\\Scripts\\pip install pillow")
 os.system("python\\python64\\Scripts\\pip install pyinstaller")
-os.system("\""+PATH[3]+"python\" -m venv python\\python32")
+os.system("\""+PATH[3]+"\\python\" -m venv python\\python32")
 os.system("python\\python32\\Scripts\\python -m pip install --upgrade pip")
 os.system("python\\python32\\Scripts\\pip install pywin32")
 os.system("python\\python32\\Scripts\\pip install pygame==1.9.6")
