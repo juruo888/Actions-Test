@@ -12,13 +12,21 @@ jobs:
   compile:
     runs-on: windows-latest
     steps:
-      - uses: actions/setup-python@v4
+      - name: Install Python 3.8.10 x64
+        uses: actions/setup-python@v4
         with:
           python-version: "3.8.10"
-          architecture: [ "x64" , "x86" ]
-      - name: Compile
+          architecture: "x64"
+      - name: Install Python 3.8.10 x86
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8.10"
+          architecture: "x86"
+      - name: Clone Repository
         run: |
           git clone https://github.com/juruo888/Actions-Test.git
+      - name: Compile
+        run: |
           python --version
           cd Actions-Test
           python compile.py
