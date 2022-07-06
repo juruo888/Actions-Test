@@ -10,7 +10,7 @@ on:
 
 jobs:
   compile:
-    runs-on: windows-latest
+    runs-on: windows-7
     steps:
       - uses: actions/checkout@v2
       - name: Compile
