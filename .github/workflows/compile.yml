@@ -28,7 +28,7 @@ jobs:
           git clone https://github.com/juruo888/ScratchOff-Pictures.git
           mv ScratchOff-Pictures pictures
           cd pictures
-          Remove-Item -Path .git
+          rd .git -Recurse
       - name: Compile
         run: |
           cd Actions-Test
