@@ -30,7 +30,9 @@ jobs:
           cd Actions-Test
           python compile.py
       - name: Get version
-        run: python ./.github/compile/version.py
+        run: |
+          cd Actions-Test
+          python ./.github/compile/version.py
       # - name: Publish to Releases
       #   uses: softprops/action-gh-release@v1
       #   with:
