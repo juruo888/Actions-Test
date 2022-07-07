@@ -24,12 +24,11 @@ jobs:
           architecture: "x86"
       - name: Clone repository
         run: |
-          D:
           git clone https://github.com/juruo888/Actions-Test.git
           git clone https://github.com/juruo888/ScratchOff-Pictures.git
           mv ScratchOff-Pictures pictures
           cd pictures
-          Remove-Item -Path .git -Recurse
+          Remove-Item -Path .git
       - name: Compile
         run: |
           cd Actions-Test
