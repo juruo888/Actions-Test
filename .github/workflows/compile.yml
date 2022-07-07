@@ -29,10 +29,12 @@ jobs:
           rename ScratchOff-Pictures pictures
           cd pictures
           rd /s /q .git
+        shell: cmd
       - name: Compile
         run: |
           cd Actions-Test
           python compile.py
+        shell: cmd
       - name: Get version
         run: python ./.github/compile/version.py
       # - name: Publish to Releases
