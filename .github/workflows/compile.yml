@@ -25,10 +25,6 @@ jobs:
       - name: Clone repository
         run: |
           git clone https://github.com/juruo888/Actions-Test.git
-          git clone https://github.com/juruo888/ScratchOff-Pictures.git
-          mv ScratchOff-Pictures pictures
-          cd pictures
-          rd .git -Recurse
       - name: Compile
         run: |
           cd Actions-Test
