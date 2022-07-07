@@ -25,10 +25,16 @@ jobs:
       - name: Clone repository
         run: |
           git clone https://github.com/juruo888/Actions-Test.git
+          git clone https://github.com/juruo888/ScratchOff-Pictures.git
+          rename ScratchOff-Pictures pictures
+          cd pictures
+          rd /s /q .git
       - name: Compile
         run: |
           cd Actions-Test
           python compile.py
+      - name: Get version
+        run: python ./.github/compile/version.py
       # - name: Publish to Releases
       #   uses: softprops/action-gh-release@v1
       #   with:
