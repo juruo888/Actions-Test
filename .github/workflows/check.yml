@@ -37,7 +37,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: SUM Code Style\n\n*< Change Code Style.
+          commit-message: "SUM Code Style\n\n*< Change Code Style."
           title: SUM Code Style
           body: "```plain\n*< Change Code Style.\n```"
           branch: autopep8
