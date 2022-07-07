@@ -5,11 +5,11 @@ name: "Compile"
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
-  compile:
+  windows:
+    name: "Compile on Windows"
+    if: startsWith( github.event.head_commit.message, 'VER' )
     runs-on: windows-latest
     steps:
       - name: Install Python 3.8.10 x64
@@ -22,10 +22,17 @@ jobs:
         with:
           python-version: "3.8.10"
           architecture: "x86"
-      - name: Clone Repository
+      - name: Clone repository
         run: |
           git clone https://github.com/juruo888/Actions-Test.git
       - name: Compile
         run: |
           cd Actions-Test
           python compile.py
+      # - name: Publish to Releases
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     tag_name: "ScratchOff v"+${{ env.VER }}
+      #     body_path: github.event.head_commit.message
+      #     prerelease: ${{ contains( env.VER, '-' ) }}
+      #     files: Releases/ScratchOff

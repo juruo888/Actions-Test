@@ -1,19 +1,13 @@
-# 请按照将 PATH 环境变量的前四项配置如下！！！否则将无法正确编译！！！
-# 1. Python 64 位 Scripts 目录
-# 2. Python 64 位根目录
-# 3. Python 32 位 Scripts 目录
-# 4. Python 32 位根目录
-# 另外提醒，PATH 末尾需要有反斜杠！！！
 import os
 import sys
 import linecache
 PATH = os.environ.get("PATH").split(";")
-major = int(linecache.getline("ScratchOff.py", 21)[6:])
-minor = int(linecache.getline("ScratchOff.py", 22)[6:])
-releases = int(linecache.getline("ScratchOff.py", 23)[9:])
-build = int(linecache.getline("ScratchOff.py", 24)[6:])
-typenum = int(linecache.getline("ScratchOff.py", 25)[8:])
-x = int(linecache.getline("ScratchOff.py", 26)[2:])
+major = int(linecache.getline("ScratchOff.py", 31)[8:])
+minor = int(linecache.getline("ScratchOff.py", 32)[8:])
+releases = int(linecache.getline("ScratchOff.py", 33)[11:])
+build = int(linecache.getline("ScratchOff.py", 34)[8:])
+typenum = int(linecache.getline("ScratchOff.py", 35)[10:])
+x = int(linecache.getline("ScratchOff.py", 36)[4:])
 if int(typenum) <= 6:
     DEBUG = True
 else:
@@ -73,7 +67,7 @@ if DEBUG:
     os.system("del ScratchOff.spec")
     with open("ScratchOff.py", "r", encoding="utf-8") as file:
         text = file.readlines()
-    text[15] = "DEBUG=True\n"
+    text[25] = "DEBUG = True\n"
     with open("ScratchOff.py", "w", encoding="utf-8") as file:
         for i in text:
             file.write(i)
@@ -95,7 +89,7 @@ if DEBUG:
     os.system("del ScratchOff.spec")
     with open("ScratchOff.py", "r", encoding="utf-8") as file:
         text = file.readlines()
-    text[15] = "DEBUG=False\n"
+    text[25] = "DEBUG = False\n"
     with open("ScratchOff.py", "w", encoding="utf-8") as file:
         for i in text:
             file.write(i)
@@ -130,3 +124,4 @@ os.system("del temp.txt")
 os.system("copy font.ttc Releases\\ScratchOff_" + version + "\\font.ttc")
 os.system("copy SO.ico Releases\\ScratchOff_" + version + "\\SO.ico")
 os.system("rd /s /q python")
+os.system("powershell Compress-Archive .\\Releases\\ScratchOff_" + version + "\\ .\\Releases\\ScratchOff_" + version + ".zip")

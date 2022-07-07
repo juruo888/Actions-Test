@@ -53,10 +53,8 @@ else:
     Lang_About_Public = "Only for test. Version: "
     Lang_About_Releases = "Version: "
 
-# No pictures error
-
-
 def noPicturesError():
+    """No pictures error"""
     quit(1)
     printLog("ERROR", "Cannot read pictures file data.")
     if IsZh_Hans:
@@ -75,10 +73,8 @@ def noPicturesError():
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
 
-# No icon error
-
-
 def noIconError():
+    """No icon error"""
     quit(1)
     printLog("ERROR", "Cannot read icon.")
     if IsZh_Hans:
@@ -97,10 +93,8 @@ def noIconError():
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
 
-# No font error
-
-
 def noFontError():
+    """No font error"""
     quit(1)
     printLog("ERROR", "Cannot read font data.")
     if IsZh_Hans:
@@ -119,10 +113,8 @@ def noFontError():
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
 
-# Cannot write log error
-
-
 def cannotWriteLogError():
+    """Cannot write log error"""
     quit(1)
     if IsZh_Hans:
         if win32api.MessageBox(
@@ -140,9 +132,6 @@ def cannotWriteLogError():
             subprocess.run("start website/issues.url", shell=True)
     quit(4)
 
-# Resize
-
-
 def resize(size):
     while True:
         if size[0] < 800 and size[1] < 800:
@@ -157,10 +146,8 @@ def resize(size):
     size = (int(size[0]), int(size[1]))
     return size
 
-# Random
-
-
 def readImageRandomly():
+    """Random a image."""
     global SCREENSIZE, ONEIMAGE
     filenames = os.listdir(IMAGEDIR)
     filenames = [f for f in filenames if f.split(".")[-1] in SUPPORTEXTS]
@@ -175,10 +162,8 @@ def readImageRandomly():
     return [pygame.transform.scale(pygame.image.load(
         imgpath), SCREENSIZE), imgpath[9:], img.size]
 
-# Print log
-
-
 def printLog(logType, logContent):
+    """Print log"""
     if logType != "DEBUG" or DEBUG:
         try:
             with open("log/latest.log", "a") as file:
@@ -192,10 +177,8 @@ def printLog(logType, logContent):
         except FileNotFoundError:
             cannotWriteLogError()
 
-# Get log time
-
-
 def getTime(log):
+    """Get log time"""
     try:
         with open(log, "r") as file:
             firstLine = file.readline()
@@ -210,9 +193,6 @@ def getTime(log):
             return time
     except FileNotFoundError:
         return 1145141919810
-
-# Watermark
-
 
 def watermark():
     font20 = pygame.font.Font("font.ttc", 20)
@@ -263,10 +243,9 @@ def watermark():
              0,
              0))
         screen.blit(text, (0, 0))
-# About in menu bar
-
 
 def Menu_About():
+    """About in menu bar"""
     if typenum <= 4:
         tkinter.messagebox.showinfo(
             title=Lang_About,
@@ -316,14 +295,9 @@ def Menu_About():
             "." +
             str(x))
 
-# Quit in menu bar
-
-
 def Menu_Quit():
+    """Quit in menu bar"""
     quit(2)
-
-# Init
-
 
 def init():
     global screen, root
@@ -361,10 +335,8 @@ def init():
     pygame.mouse.set_cursor(*pygame.cursors.diamond)
     screen = pygame.display.set_mode(SCREENSIZE)
 
-# Quit
-
-
 def quit(quittype):
+    """Quit the program."""
     if quittype == 1:
         pygame.quit()
     elif quittype == 2:
