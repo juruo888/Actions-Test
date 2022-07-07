@@ -30,6 +30,8 @@ jobs:
           cd Actions-Test
           python compile.py
       - name: Get version
+        env:
+          MSG: ${{ toJSON(github.event.commits.*.message) }}
         run: |
           cd Actions-Test
           python ./.github/compile/version.py
