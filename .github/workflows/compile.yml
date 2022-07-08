@@ -10,7 +10,7 @@ jobs:
   windows:
     name: "Compile on Windows"
     if: startsWith( github.event.head_commit.message, 'VER' )
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
       - name: Install Python 3.8.10 x64
         uses: actions/setup-python@v4
