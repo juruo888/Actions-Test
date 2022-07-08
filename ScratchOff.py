@@ -53,6 +53,7 @@ else:
     Lang_About_Public = "Only for test. Version: "
     Lang_About_Releases = "Version: "
 
+
 def noPicturesError():
     """No pictures error"""
     quit(1)
@@ -72,6 +73,7 @@ def noPicturesError():
                 win32con.MB_ICONWARNING | win32con.MB_YESNO) == 6:
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
+
 
 def noIconError():
     """No icon error"""
@@ -93,6 +95,7 @@ def noIconError():
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
 
+
 def noFontError():
     """No font error"""
     quit(1)
@@ -113,6 +116,7 @@ def noFontError():
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
 
+
 def cannotWriteLogError():
     """Cannot write log error"""
     quit(1)
@@ -132,6 +136,7 @@ def cannotWriteLogError():
             subprocess.run("start website/issues.url", shell=True)
     quit(4)
 
+
 def resize(size):
     while True:
         if size[0] < 800 and size[1] < 800:
@@ -145,6 +150,7 @@ def resize(size):
             break
     size = (int(size[0]), int(size[1]))
     return size
+
 
 def readImageRandomly():
     """Random a image."""
@@ -162,6 +168,7 @@ def readImageRandomly():
     return [pygame.transform.scale(pygame.image.load(
         imgpath), SCREENSIZE), imgpath[9:], img.size]
 
+
 def printLog(logType, logContent):
     """Print log"""
     if logType != "DEBUG" or DEBUG:
@@ -176,6 +183,7 @@ def printLog(logType, logContent):
                 print(" [" + logType + "]: " + logContent)
         except FileNotFoundError:
             cannotWriteLogError()
+
 
 def getTime(log):
     """Get log time"""
@@ -193,6 +201,7 @@ def getTime(log):
             return time
     except FileNotFoundError:
         return 1145141919810
+
 
 def watermark():
     font20 = pygame.font.Font("font.ttc", 20)
@@ -243,6 +252,7 @@ def watermark():
              0,
              0))
         screen.blit(text, (0, 0))
+
 
 def Menu_About():
     """About in menu bar"""
@@ -295,9 +305,11 @@ def Menu_About():
             "." +
             str(x))
 
+
 def Menu_Quit():
     """Quit in menu bar"""
     quit(2)
+
 
 def init():
     global screen, root
@@ -334,6 +346,7 @@ def init():
     pygame.mixer.init()
     pygame.mouse.set_cursor(*pygame.cursors.diamond)
     screen = pygame.display.set_mode(SCREENSIZE)
+
 
 def quit(quittype):
     """Quit the program."""
