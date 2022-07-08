@@ -1,6 +1,7 @@
 import os
 import sys
 import linecache
+import zipfile
 PATH = os.environ.get("PATH").split(";")
 major = int(linecache.getline("ScratchOff.py", 31)[8:])
 minor = int(linecache.getline("ScratchOff.py", 32)[8:])
@@ -124,6 +125,12 @@ os.system("del temp.txt")
 os.system("copy font.ttc Releases\\ScratchOff_" + version + "\\font.ttc")
 os.system("copy SO.ico Releases\\ScratchOff_" + version + "\\SO.ico")
 os.system("rd /s /q python")
-os.system("powershell Compress-Archive .\\Releases\\ScratchOff_" + version + "\\ .\\Releases\\ScratchOff_" + version + ".zip")
+z = zipfile.ZipFile("Releases\\ScratchOff_" + version + ".zip", 'w', zipfile.ZIP_DEFLATED)
+for dir_path, dir_names, file_names in os.walk("Releases\\ScratchOff_" + version):
+    f_path = dir_path.replace("Releases\\ScratchOff_" + version, "")
+    f_path = f_path and f_path + os.sep or ""
+    for filename in file_names:
+        z.write(os.path.join(dir_path, filename), f_path + filename)
+z.close()
 if os.environ.get("GITHUB_ACTION"):
     os.system("pwsh \"FILEPATH=Releases\\ScratchOff_" + version + ".zip\" >> $env:GITHUB_ENV")

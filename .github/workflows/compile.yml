@@ -46,6 +46,6 @@ jobs:
         with:
           name: ${{ env.VERSION }}
           tag_name: ${{ env.VER }}
-          body_path: ./log.txt
+          body_path: log.txt
           prerelease: ${{ contains( env.VER, '-' ) }}
           files: ${{ env.FILEPATH }}
