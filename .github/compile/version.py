@@ -1,8 +1,5 @@
 import json
 import os
-os.environ["MSG"]="""[
-  "VER 1.2.0-alpha.1\\n\\n-- qwq"
-]"""
 rb = json.loads(os.environ["MSG"])[-1].split("\n\n")
 version = rb[0][4:]
 log = rb[1]
