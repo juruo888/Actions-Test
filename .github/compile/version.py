@@ -12,7 +12,7 @@ version = str(major) + "." + str(minor) + "." + str(releases) + \
 rb = json.loads(os.environ["MSG"])[-1].split("\n\n")
 ver = rb[0][4:]
 log = rb[1]
-os.system("pwsh \"VERSION=" + "ScratchOff v" + ver + " (" + version + ") \" >> $env:GITHUB_ENV")
-os.system("pwsh \"VER=" + ver + "\" >> $env:GITHUB_ENV")
+os.system("\"VERSION=" + "ScratchOff v" + ver + " (" + version + ") \" >> $env:GITHUB_ENV")
+os.system("\"VER=" + ver + "\" >> $env:GITHUB_ENV")
 with open("log.txt", "w", encoding="utf-8") as file:
     file.write(log)

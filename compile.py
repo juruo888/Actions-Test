@@ -133,4 +133,4 @@ for dir_path, dir_names, file_names in os.walk("Releases\\ScratchOff_" + version
         z.write(os.path.join(dir_path, filename), f_path + filename)
 z.close()
 if os.environ.get("GITHUB_ACTION"):
-    os.system("pwsh \"FILEPATH=Releases\\ScratchOff_" + version + ".zip\" >> $env:GITHUB_ENV")
+    os.system("\"FILEPATH=Releases\\ScratchOff_" + version + ".zip\" >> $env:GITHUB_ENV")
