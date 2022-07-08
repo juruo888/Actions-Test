@@ -32,6 +32,8 @@ jobs:
       - name: Get version and log
         env:
           MSG: ${{ toJSON(github.event.commits.*.message) }}
+          VERSION: ""
+          FILEPATH: ""
         run: |
           cd Actions-Test
           python ./.github/compile/version.py
