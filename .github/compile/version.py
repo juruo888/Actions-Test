@@ -6,8 +6,6 @@ os.environ["MSG"]="""[
 rb = json.loads(os.environ["MSG"])[-1].split("\n\n")
 version = rb[0][4:]
 log = rb[1]
-os.environ["VERSION"] = "ScratchOff v" + version + " (" + os.environ["VERSION"] + ") "
-with open("version.txt", "w") as file:
-    file.write("ScratchOff v" + version + "")
+os.system("setx VERSION %s" % "ScratchOff v" + version + " (" + os.environ["VERSION"] + ") ")
 with open("log.txt", "w") as file:
     file.write(log)

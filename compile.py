@@ -125,5 +125,5 @@ os.system("copy font.ttc Releases\\ScratchOff_" + version + "\\font.ttc")
 os.system("copy SO.ico Releases\\ScratchOff_" + version + "\\SO.ico")
 os.system("rd /s /q python")
 os.system("powershell Compress-Archive .\\Releases\\ScratchOff_" + version + "\\ .\\Releases\\ScratchOff_" + version + ".zip")
-os.environ["VERSION"] = version
-os.environ["FILEPATH"] = "Releases\\ScratchOff_" + version
+os.system("setx VERSION %s" % version)
+os.system("setx FILEPATH %s" % "Releases\\ScratchOff_" + version)
