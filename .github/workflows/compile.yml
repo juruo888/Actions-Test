@@ -40,7 +40,8 @@ jobs:
       - name: Publish to Releases
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ env.VERSION }}
+          name: ${{ env.VERSION }}
+          tag_name: ${{ env.VER }}
           body_path: ./log.txt
           prerelease: ${{ contains( env.VERSION, '-' ) }}
           files: ${{ env.FILEPATH }}
