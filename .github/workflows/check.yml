@@ -27,6 +27,7 @@ jobs:
           node ./node_modules/ct-git-commit-msg-std/check.js -c "$PWD/.gitmsgrc.cjs" -e COMMIT_MSG
   autopep8:
     name: "Auto PEP 8"
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
