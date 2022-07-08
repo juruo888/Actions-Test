@@ -35,10 +35,10 @@ jobs:
         run: |
           cd Actions-Test
           python ./.github/compile/version.py
-      # - name: Publish to Releases
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     tag_name: "ScratchOff v"+${{ env.VER }}
-      #     body_path: github.event.head_commit.message
-      #     prerelease: ${{ contains( env.VER, '-' ) }}
-      #     files: Releases/ScratchOff
+      - name: Publish to Releases
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.VERSION }}
+          body_path: ./log.txt
+          prerelease: ${{ contains( env.VERSION, '-' ) }}
+          files: ${{ env.FILEPATH }}
