@@ -126,4 +126,4 @@ os.system("copy SO.ico Releases\\ScratchOff_" + version + "\\SO.ico")
 os.system("rd /s /q python")
 os.system("powershell Compress-Archive .\\Releases\\ScratchOff_" + version + "\\ .\\Releases\\ScratchOff_" + version + ".zip")
 if os.environ.get("GITHUB_ACTION"):
-    os.system("pwsh \"FILEPATH=Releases\\ScratchOff_" + version + "\" >> $env:GITHUB_ENV")
+    os.system("pwsh \"FILEPATH=Releases\\ScratchOff_" + version + ".zip\" >> $env:GITHUB_ENV")

@@ -32,11 +32,15 @@ jobs:
       - name: Get version and log
         env:
           MSG: ${{ toJSON(github.event.commits.*.message) }}
+          VER: ""
           VERSION: ""
           FILEPATH: ""
         run: |
           cd Actions-Test
           python ./.github/compile/version.py
+          "VER=1.2.0" >> $env:GITHUB_ENV
+          "VERSION=1.1.0.9.1.1" >> $env:GITHUB_ENV
+          "FILEPATH=Releases\ScratchOff_1.1.0.9.1.1.zip" >> $env:GITHUB_ENV
       - name: Publish to Releases
         uses: softprops/action-gh-release@v1
         with:
