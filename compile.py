@@ -16,7 +16,6 @@ version = str(major) + "." + str(minor) + "." + str(releases) + \
     "." + str(build) + "." + str(typenum) + "." + str(x)
 python64 = ""
 python32 = ""
-print("pwsh \"VERSION=" + version + "\" >> $env:GITHUB_ENV")
 for i in PATH:
     try:
         if "python.exe" in os.listdir(i):
@@ -127,5 +126,5 @@ os.system("copy SO.ico Releases\\ScratchOff_" + version + "\\SO.ico")
 os.system("rd /s /q python")
 os.system("powershell Compress-Archive .\\Releases\\ScratchOff_" + version + "\\ .\\Releases\\ScratchOff_" + version + ".zip")
 if os.environ.get("GITHUB_ACTION"):
-    os.system("pwsh \"VERSION=" + version + "\" | Out-File -FilePath >> $env:GITHUB_ENV -Encoding utf8 -Append")
-    os.system("pwsh \"FILEPATH=Releases\\ScratchOff_" + version + "\" | Out-File -FilePath >> $env:GITHUB_ENV -Encoding utf8 -Append")
+    os.system("powershell \"VERSION=" + version + "\" | Out-File -FilePath >> $env:GITHUB_ENV -Encoding utf8 -Append")
+    os.system("powershell \"FILEPATH=Releases\\ScratchOff_" + version + "\" | Out-File -FilePath >> $env:GITHUB_ENV -Encoding utf8 -Append")
