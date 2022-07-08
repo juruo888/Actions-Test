@@ -11,10 +11,6 @@ jobs:
     name: "Compile on Windows"
     if: startsWith( github.event.head_commit.message, 'VER' )
     runs-on: windows-latest
-    env:
-      MSG: ${{ toJSON(github.event.commits.*.message) }}
-      VERSION: ""
-      FILEPATH: ""
     steps:
       - name: Install Python 3.8.10 x64
         uses: actions/setup-python@v4
@@ -33,7 +29,9 @@ jobs:
         run: |
           cd Actions-Test
           python compile.py
-      - name: Get version
+      - name: Get version and log
+        env:
+          MSG: ${{ toJSON(github.event.commits.*.message) }}
         run: |
           cd Actions-Test
           python ./.github/compile/version.py
