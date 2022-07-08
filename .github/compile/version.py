@@ -14,5 +14,5 @@ ver = rb[0][4:]
 log = rb[1]
 os.system("pwsh \"VERSION=" + "ScratchOff v" + ver + " (" + version + ") \" >> $env:GITHUB_ENV")
 os.system("pwsh \"VER=" + ver + "\" >> $env:GITHUB_ENV")
-with open("log.txt", "w") as file:
+with open("log.txt", "w", encoding="utf-8") as file:
     file.write(log)
