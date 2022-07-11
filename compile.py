@@ -125,12 +125,19 @@ os.system("del temp.txt")
 os.system("copy font.ttc Releases\\ScratchOff_" + version + "\\font.ttc")
 os.system("copy SO.ico Releases\\ScratchOff_" + version + "\\SO.ico")
 os.system("rd /s /q python")
-z = zipfile.ZipFile("Releases\\ScratchOff_" + version + ".zip", 'w', zipfile.ZIP_DEFLATED)
-for dir_path, dir_names, file_names in os.walk("Releases\\ScratchOff_" + version):
+z = zipfile.ZipFile(
+    "Releases\\ScratchOff_" +
+    version +
+    ".zip",
+    'w',
+    zipfile.ZIP_DEFLATED)
+for dir_path, dir_names, file_names in os.walk(
+        "Releases\\ScratchOff_" + version):
     f_path = dir_path.replace("Releases\\ScratchOff_" + version, "")
     f_path = f_path and f_path + os.sep or ""
     for filename in file_names:
         z.write(os.path.join(dir_path, filename), f_path + filename)
 z.close()
 if os.environ.get("GITHUB_ACTION"):
-    os.system("\"FILEPATH=Releases\\ScratchOff_" + version + ".zip\" >> $env:GITHUB_ENV")
+    os.system("\"FILEPATH=Releases\\ScratchOff_" +
+              version + ".zip\" >> $env:GITHUB_ENV")
