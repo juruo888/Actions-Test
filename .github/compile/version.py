@@ -12,7 +12,11 @@ version = str(major) + "." + str(minor) + "." + str(releases) + \
 rb = json.loads(os.environ["MSG"])[-1].split("\n\n")
 ver = rb[0][4:]
 log = rb[1]
-os.system("\"VERSION=" + "ScratchOff v" + ver + " (" + version + ") \" >> $env:GITHUB_ENV")
-os.system("\"VER=" + ver + "\" >> $env:GITHUB_ENV")
+with open("version.ps1", "w", encoding="utf8") as file:
+    file.write("\"VERSION=" + "ScratchOff v" + ver +
+               " (" + version + ") \" >> $env:GITHUB_ENV")
+    file.write("\"VER=" + ver + "\" >> $env:GITHUB_ENV")
+    file.write("\"FILEPATH=Releases\\ScratchOff_" +
+               version + ".zip\" >> $env:GITHUB_ENV")
 with open("log.txt", "w", encoding="utf-8") as file:
     file.write(log)
