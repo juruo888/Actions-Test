@@ -25,6 +25,9 @@ jobs:
           python-version: "3.8.10"
           architecture: "x86"
       - name: Compile
+        env:
+          python32: C:\hostedtoolcache\windows\Python\3.8.10\x86
+          python64: C:\hostedtoolcache\windows\Python\3.8.10\x64
         run: |
           python compile.py
       - name: Get version and log
