@@ -25,7 +25,7 @@ sys_lang = hex(ctypes.windll.kernel32.GetSystemDefaultUILanguage())
 IsZh_Hans = (sys_lang == "0x804")
 DEBUG = False
 RESTART = True
-BOMBTIME = "2022.7.7 12:00:00"
+BOMBTIME = "2022.7.3 12:00:00"
 
 # Version
 major = 1

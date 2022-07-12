@@ -35,6 +35,9 @@ if python32 == "":
 if python64 == "":
     print("[ERROR] Python x64 not found. Please install Python x64!")
     sys.exit(1)
+print(python32)
+print(python64)
+sys.exit(0)
 os.system("md python")
 os.system("\"" + PATH[1] + "\\python\" -m venv python\\python64")
 os.system("python\\python64\\Scripts\\python -m pip install --upgrade pip")
