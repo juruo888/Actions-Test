@@ -13,8 +13,10 @@ jobs:
     name: "Check Commit Message"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Sutup node
+        uses: actions/setup-node@v2
         with:
           node-version: 16.x
       - name: Check commit messages
@@ -30,7 +32,8 @@ jobs:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
       - name: Auto PEP 8
         uses: peter-evans/autopep8@v1
         with:
