@@ -34,7 +34,6 @@ jobs:
           VERSION: ""
           FILEPATH: ""
         run: |
-          cd Actions-Test
           python ./.github/compile/version.py
           ./version.ps1
       - name: Publish to Releases
