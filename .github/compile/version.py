@@ -14,7 +14,7 @@ ver = rb[0][4:]
 log = rb[1]
 with open("version.ps1", "w", encoding="utf8") as file:
     file.write("\"VERSION=" + "ScratchOff v" + ver +
-               " (Version" + version + ") \" >> $env:GITHUB_ENV\n")
+               " (Version " + version + ") \" >> $env:GITHUB_ENV\n")
     file.write("\"VER=" + ver + "\" >> $env:GITHUB_ENV\n")
     file.write("\"FILEPATH=Releases\\ScratchOff_" +
                version + ".zip\" >> $env:GITHUB_ENV\n")
