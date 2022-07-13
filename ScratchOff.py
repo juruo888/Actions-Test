@@ -1,5 +1,3 @@
-# 123456
-
 # Import
 import pygame
 import os
