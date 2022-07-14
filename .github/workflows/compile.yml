@@ -45,5 +45,5 @@ jobs:
           name: ${{ env.VERSION }}
           tag_name: ${{ env.VER }}
           body_path: log.txt
-          prerelease: ${{ contains( env.VER, '-' ) }} &&${{ ! contains( env.VER, '-patch' ) }}
+          prerelease: ${{ contains( env.VER, '-' ) }} && ${{ ! contains( env.VER, '-patch' ) }}
           files: ${{ env.FILEPATH }}
